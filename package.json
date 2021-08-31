@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Fred-Cypher/frontend/issues"
   },
-  "homepage": "https://github.com/Fred-Cypher/frontend#readme"
+  "homepage": "https://github.com/Fred-Cypher/frontend#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.0"
+  }
 }
