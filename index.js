@@ -3,29 +3,21 @@ fetch('http://localhost:3000/api/teddies')
     .then(response => response.json())
     .then(data => {
         const articlesContainer = document.getElementById('articles');
+        let nameTeddy;
+        let divTeddy;
+        let priceTeddy;
         for (let article of data) {
-            articlesContainer.innerHTML += `${article.name} ${article.price}<br>`;
+           /* divTeddy = document.createElement("div");
+            nameTeddy = document.createElement("h2");
+            nameTeddy.textContent = article.name;
+            divTeddy.appendChild(nameTeddy);
+            priceTeddy = document.createElement("span");
+            priceTeddy.textContent = article.price;
+            divTeddy.appendChild(priceTeddy);
+            articlesContainer.appendChild(divTeddy);*/
+            articlesContainer.innerHTML += `<div><h2>${article.name}</h2> <span>${article.price}</span><br></div>`;
         }
     });
 
 
-    /*------------------ Header ------------------ */
-
-let logo = document.createElement("div");
-
-
-
-let headerTitle = document.createElement("div");
-
-let title = document.createElement("h1");
-
-title.textContent = "Orinoco";
-
-let enterpriseDescription = document.createElement("p");
-
-let basket = document.createElement("div");
-
-document.getElementById("header").appendChild(logo);
-document.getElementById("header").appendChild(headerTitle).appendChild(title);
-document.getElementById("header").appendChild(headerTitle).appendChild(enterpriseDescription);
-document.getElementById("header").appendChild(basket);
+    
