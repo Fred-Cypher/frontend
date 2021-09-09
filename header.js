@@ -97,3 +97,12 @@ cardText.textContent = "3";
 document.getElementById(main).appendChild(articles).appendChild(cardArticle).appendChild(cardImage);
 document.getElementById(main).appendChild(articles).appendChild(cardArticle).appendChild(cardBody).appendChild(cardTitle);
 document.getElementById(main).appendChild(articles).appendChild(cardArticle).appendChild(cardBody).appendChild(cardText);
+
+
+
+var choice = document.getElementById('choice');
+var options = product.name;
+
+options.forEach(function(element, key){
+    choice[key] = new Option(element, key);
+});

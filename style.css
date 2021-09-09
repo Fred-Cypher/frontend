@@ -18,7 +18,7 @@ header, footer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 .logoImg{
@@ -26,10 +26,10 @@ header, footer{
     width: auto;
 }
 
-.headerTitle{
+/*.headerTitle{
     border: 1px solid green;
 }
-
+*/
 .orinoco{
     height: 4rem;
 }
@@ -62,13 +62,13 @@ a:hover{
     color: initial;
 }
 
-.fa-shopping-cart{
+/*.fa-shopping-cart{
     font-size: 4rem;
     background:-webkit-linear-gradient(left top,#E68B07 10%, #8F5BFE 90%);
     background-clip:text;
     -webkit-background-clip:text;
     color:transparent;
-}
+}*/
 
 /* ------ Cards --------- */
 
@@ -98,6 +98,7 @@ a:hover{
 footer{
     padding-top: 1rem;
 }
+
 .credit{
     font-size: 0.7rem;
 }
