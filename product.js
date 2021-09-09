@@ -1,46 +1,25 @@
-    let url = ("http://localhost:3000/api/teddies");
-
-    let searchParams = window.location.search;
-    
-    let params = new URLSearchParams(searchParams);
-    let idProduct = params.get('id');
+let params = new URL(document.location).searchParams;
+let idProduct = params.get('id');
 
 
-    fetch(url+"?id=${idProduct}")
-        .then(response => response.json())
-        .then(dataProduct => {
-            /*let product = dataProduct;
-            if (idProduct == "url._id"){
-                const productContainer = document.querySelector("product");
-                productContainer.innerHTML = `<div class="card mt-4 mb-5">
-                                                    <img class="card-img-top cardImage" src="${product.imageUrl}" alt="Produit à" />
-                                                    <div class="card-body text-center">
-                                                    <div class="card-title h5">${product.name}</div>
-                                                        <p>${product.description}</p>
+fetch('http://localhost:3000/api/teddies?id=${idProduct}')
+    .then(response => response.json())
+    .then(dataProduct => {
+        for(let product of dataProduct){
+            if (idProduct == product._id){
+                let createProduct = document.createElement('div');
+                createProduct.innerHTML = `<div class="col-8">
+                                                <div class="card mt-4 mb-5 productCard">
+                                                    <img class="card-img-top cardImage" src="${product.imageUrl}" alt="Produit à commander" />
+                                                    <div class="card-body">
+                                                        <div class="card-title h5 text-center">${product.name}</div>
+                                                        <p><strong>Description</strong> : ${product.description}</p>
                                                         <span class="price">Prix : <strong>${product.price / 100},00 €</strong></span>
                                                     </div>
+                                                    <a class="btn border-secondary" href="#" role="button">Ajouter au panier</a>
                                                 </div>
-                `
-            }*/
-            for(let product of dataProduct) {
-                const productContainer = document.getElementById("product");
-                productContainer.innerHTML = `<div class="col-8 text-center">
-                                                <div class="card mt-4 mb-5">
-                                                    <img class="card-img-top cardImage" src="${product.imageUrl}" alt="Produit à" />
-                                                    <div class="card-body text-center">
-                                                    <div class="card-title h5">${product.name}</div>
-                                                        <p>${product.description}</p>
-                                                        <span class="price">Prix : <strong>${product.price / 100},00 €</strong></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                `}
+                                            </div>`
+        document.getElementById('product').appendChild(createProduct);
             }
-
-            )
-        
-        .catch(function(error) {
-            console.log(error);
-        });
-
-        
+        }
+    })

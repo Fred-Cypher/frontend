@@ -39,7 +39,9 @@ header, footer{
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    border : 1px solid red;
+    border : 1px solid #eec3e5;
+    padding: 0.3rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem #ebbce1;
 }
 
 .icon{
@@ -71,7 +73,7 @@ a:hover{
 /* ------ Cards --------- */
 
 .card{
-    height: 22rem;
+    height: auto;
     /*border: 1px solid #8F5BFE;*/
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
@@ -89,6 +91,7 @@ a:hover{
 .price{
     text-align: right;
 }
+
 
 /*------ Footer -------*/
 
