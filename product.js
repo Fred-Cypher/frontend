@@ -8,19 +8,26 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
         for(let product of dataProduct){
             if (idProduct == product._id){
                 let createProduct = document.createElement('div');
-                createProduct.innerHTML = `<div class="col-8">
+                createProduct.setAttribute("class", "col-10 mt-4 mb-4");
+                createProduct.innerHTML = ` <div class="col-12">
                                                 <div class="card mt-4 mb-5 productCard">
-                                                    <img class="card-img-top cardImage" src="${product.imageUrl}" alt="Produit à commander" />
-                                                    <div class="card-body">
-                                                        <div class="card-title h5 text-center">${product.name}</div>
-                                                        <label>Choix de la couleur</label>
-                                                        <select id="choice" name="productChoice">
-                                                            <option value="">Choisir la couleur</option>
-                                                        </select>
-                                                        <p><strong>Description</strong> : ${product.description}</p>
-                                                        <span class="price">Prix : <strong>${product.price / 100},00 €</strong></span>
+                                                    <div class="row g-0">
+                                                        <div class="col-5">
+                                                            <img class="img-fluid cardImage" src="${product.imageUrl}" alt="Produit à commander" />
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <div class="card-body">
+                                                                <div class="card-title h5 pt-3">${product.name}</div>
+                                                                <div class="m-3 text-start pt-3">
+                                                                    <label class="ms-3 me-2"><strong>Choix de la couleur </strong></label>
+                                                                    <select id="choice" name="productChoice"></select>
+                                                                <div>
+                                                                <p class="m-3 text-start pt-3"><strong>Description</strong> : ${product.description}</p>
+                                                                <p class="price m-3 text-end pt-3">Prix : <strong>${product.price / 100},00 €</strong></p>
+                                                            </div>
+                                                        </div>        
+                                                        <button type="button" class="btn border-secondary">Ajouter au panier</button>
                                                     </div>
-                                                    <a class="btn border-secondary" href="#" role="button">Ajouter au panier</a>
                                                 </div>
                                             </div>`
                                             
