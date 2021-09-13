@@ -28,30 +28,68 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                                                         <div class="col-6">
                                                             <div class="card-body">
                                                                 <div class="card-title h5 pt-3">${product.name}</div>
-                                                                <div class="m-3 text-start pt-3">
+                                                                <form class="m-3 text-start pt-3">
                                                                     <label class="ms-3 me-2"><strong>Choix de la couleur </strong></label>
-                                                                    <select id="choice" name="productChoice"></select>
-                                                                <div>
+                                                                    <select id="choice" name="choice"></select>
+                                                                <form>
                                                                 <p class="m-3 text-start pt-3"><strong>Description</strong> : ${product.description}</p>
                                                                 <p class="price m-3 text-end pt-3">Prix : <strong>${product.price / 100},00 €</strong></p>
-                                                            </div>
-                                                        </div>        
-                                                        <button type="button" class="btn border-secondary">Ajouter au panier</button>
+                                                            </form>
+                                                        </form>        
+                                                        <button type="button" class="btn border-secondary addProduct">Ajouter au panier</button>
                                                     </div>
                                                 </div>
                                             </div>`
                                             
-        document.getElementById('product').appendChild(createProduct);
+                document.getElementById('product').appendChild(createProduct);
 
-        /* Choix de la couleur */
+                /* Choix de la couleur */
 
-        let choice = document.getElementById('choice');
-        let options = product.colors;
+                let choice = document.getElementById('choice');
+                let options = product.colors;
 
-        options.forEach(function(element, key){
-            choice[key] = new Option(element, key);
-        });
+                options.forEach(function(element, key){
+                    choice[key] = new Option(element, key);
+                });
+
+                /* Mise des produits dans le panier */
+
+                const formChoice = document.querySelector('#choice');
+
+                const buttonAdd = document.querySelector('.addProduct');
+
+                buttonAdd.addEventListener('click', (event)=>{
+                    event.preventDefault();
+                    
+                    const productChoice = formChoice.value;
+
+                    let selectedProduct = {
+                        id : product._id,
+                        name : product.name,
+                        options : productChoice,
+                        price : product.price / 100
+                    }
+
+                    localStorage.setItem("productInBasket", JSON.stringify(selectedProduct))
+                })
+
+                
             }
         }
     })
 
+
+
+
+
+
+
+/*"colors": [
+    "Tan",
+    "Chocolate",
+    "Black",
+    "White"
+  ],
+  "_id": "5be9c8541c9d440000665243",
+  "name": "Norbert",
+  "price": 2900,*/

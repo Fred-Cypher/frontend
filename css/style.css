@@ -139,9 +139,16 @@ ul{
 
 .construction{
     height: 100%;
-    font-size: 4rem;
+    font-size: 3.5rem;
     padding: 6rem;
     margin-top: 5rem;
     margin-bottom: 5rem;
     text-shadow: 0.2rem 0.2rem 0.8rem #7131fa73;
 }
+
+/*.constructionFooter, .productFooter{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}*/
