@@ -33,7 +33,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                                                                     <select id="choice" name="choice"></select>
                                                                 <form>
                                                                 <p class="m-3 text-start pt-3"><strong>Description</strong> : ${product.description}</p>
-                                                                <p class="price m-3 text-end pt-3">Prix : <strong>${product.price / 100},00 €</strong></p>
+                                                                <p class="price m-3 text-end pt-3">Prix : <strong>${product.price / 100} €</strong></p>
                                                             </form>
                                                         </form>        
                                                         <button type="button" class="btn border-secondary addProduct">Ajouter au panier</button>
@@ -64,32 +64,26 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                     const productChoice = formChoice.value;
 
                     let selectedProduct = {
-                        id : product._id,
-                        name : product.name,
-                        options : productChoice,
-                        price : product.price / 100
+                        "id" : product._id,
+                        "name" : product.name,
+                        "options" : productChoice,
+                        "price" : product.price / 100
                     }
 
-                    localStorage.setItem("productInBasket", JSON.stringify(selectedProduct))
-                })
+                    let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
 
-                
+                    if(productInBasket){
+                        productInBasket.push(selectedProduct);
+                        localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
+                        console.log(productInBasket);
+
+                    }else{
+                        productInBasket = [];
+                        productInBasket.push(selectedProduct);
+                        localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
+                        console.log(productInBasket);
+                    }
+                })
             }
         }
     })
-
-
-
-
-
-
-
-/*"colors": [
-    "Tan",
-    "Chocolate",
-    "Black",
-    "White"
-  ],
-  "_id": "5be9c8541c9d440000665243",
-  "name": "Norbert",
-  "price": 2900,*/
