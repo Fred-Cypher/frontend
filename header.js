@@ -106,3 +106,14 @@ var options = product.name;
 options.forEach(function(element, key){
     choice[key] = new Option(element, key);
 });
+
+
+const totalPrice = document.createElement('div');
+    totalPrice.setAttribute("class", "total");
+
+    document.getElementById('cart').appendChild(totalPrice);
+
+    for (let basketProducts of productInBasket){
+            totalPrice.innerHTML ++ `<div>
+                                        Prix total : ${basketProducts.price}</div> `
+    }

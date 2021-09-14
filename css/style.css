@@ -152,3 +152,16 @@ ul{
     width: 100%;
     height: auto;
 }*/
+
+
+/*--- Panier --*/
+
+.trash{
+    height: 1.6rem;
+    width: 1.5rem;
+}
+
+.contact{
+    display: flex;
+    justify-content: center;
+}

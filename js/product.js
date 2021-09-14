@@ -61,6 +61,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 buttonAdd.addEventListener('click', (event)=>{
                     event.preventDefault();
                     
+                    /* Récupération de l'option couleur */
                     const productChoice = formChoice.value;
 
                     let selectedProduct = {
@@ -72,16 +73,34 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
 
                     let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
 
-                    if(productInBasket){
+                    /* Création d'une fenêtre popup pour confirmer l'enregistrement du produit */
+                    const popupConfirmation = () => {
+                        if(window.confirm(`${product.name} a bien rejoint votre panier.
+                        Pour vérifier votre panier, cliquez sur OK, si vous voulez adoptez un autre nounours cliquez sur ANNULER`))
+                        {
+                            window.location.href = "../view/panier.html";
+                        } else {
+                            window.location.href = "/index.html";
+                        }
+                    }
+
+                    /* Fonction permettant d'envoyer le produit dans le panier */
+                    const addSelectedProduct = () => {
                         productInBasket.push(selectedProduct);
                         localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
+                    }
+
+                    /* Envoi du produit sélectionné dans le localStorage */
+                    if(productInBasket){
+                        addSelectedProduct();
                         console.log(productInBasket);
+                        popupConfirmation();
 
                     }else{
                         productInBasket = [];
-                        productInBasket.push(selectedProduct);
-                        localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
+                        addSelectedProduct();
                         console.log(productInBasket);
+                        popupConfirmation();
                     }
                 })
             }
