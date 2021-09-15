@@ -51,6 +51,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 options.forEach(function(element, key){
                     choice[key] = new Option(element, key);
                 });
+                
 
                 /* Mise des produits dans le panier */
 

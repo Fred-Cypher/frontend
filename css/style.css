@@ -45,6 +45,10 @@ header, footer{
     margin-bottom: 0.3rem;
 }
 
+.pageLink:hover{
+    box-shadow: 0.2rem 0.2rem 0.6rem #ee86d7;
+}
+
 .icon{
     height: 2rem;
 }
@@ -164,4 +168,9 @@ ul{
 .contact{
     display: flex;
     justify-content: center;
+}
+
+.fullBasket{
+    display: flex;
+    align-items: center;
 }

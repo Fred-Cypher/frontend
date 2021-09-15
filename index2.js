@@ -138,3 +138,19 @@ button.onclick = () => {
     localStorage.setItem("productInBasket", JSON.parse(productInBasket))
 };
 
+
+
+    
+
+    let productPrice = document.getElementById('productPrice');
+    
+    for(i = 0; i < productInBasket.length; i++){
+        productPrice[i] = productPrice[i+1];
+        return productPrice;
+    };
+
+     for(i = 0; i < productInBasket.length; i++){
+        var productPrice = basketProducts.price[i];
+        productPrice = productPrice++;
+        return productPrice
+    };
