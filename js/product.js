@@ -49,7 +49,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 let options = product.colors;
 
                 options.forEach(function(element, key){
-                    choice[key] = new Option(element, key);
+                    choice[key] = new Option(element, element); // envoie la couleur dans la value du Select
                 });
 
 

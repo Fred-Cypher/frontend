@@ -3,7 +3,7 @@
 let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'))
 
 
-if (productInBasket === null){
+if (productInBasket === null || productInBasket == 0){
 
     /*------ À afficher si le panier est vide ----- */
     const basketContents = document.getElementById('cart');
@@ -91,10 +91,12 @@ if (productInBasket === null){
     }*/
 
     buttonSupp.forEach((trash, key) => {
-        console.log(trash)
         trash.addEventListener('click', (event) =>{
             event.preventDefault();
-            localStorage.removeItem('checkedProduct', key);
+            let productSupp = productInBasket.splice(key, 1); //élèment correspondant à key (indice dans la tableau) supprimé
+            console.log(productSupp);
+            localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
+
             document.location.reload()
         })
     } );
