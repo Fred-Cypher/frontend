@@ -1,15 +1,23 @@
+/* Récupération des produits contenus dans le panier */
+
 let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'))
 
+
 if (productInBasket === null){
+
+    /*------ À afficher si le panier est vide ----- */
     const basketContents = document.getElementById('cart');
     basketContents.innerHTML = `<div class="row">
                                     <div class="col-10 emptyBasket">
                                         <p>Votre panier est vide<br>
                                         Retournez sur la page d'accueil pour choisir des nounours pour le remplir</p>
                                     </div>
-                                </div>
-    `
+                                </div> 
+                                `
 } else {
+
+
+    /*------ Première ligne du tableau à afficher si le panier comporte des produits */
 
     const basketContents = document.getElementById('cart');
     basketContents.innerHTML = `<p>Votre panier contient les produits suivants : </p>
@@ -27,9 +35,10 @@ if (productInBasket === null){
                                     Supprimer
 
                                     </div>
-                                </div>`
+                                </div> 
+                                `
 
-                                
+    /*----- Affichage des produits contenus dans le panier -----*/                            
 
     for (let basketProducts of productInBasket){
         basketContents.innerHTML += `<div class="row fullBasket p-2 border">
@@ -47,21 +56,38 @@ if (productInBasket === null){
                                         </div>
                                     </div>
                                     `
-                                    
     };
+
+
+    /*------ Calcul du prix total de la commande --------*/
+
+    let total = 0;
+    for(i = 0; i < productInBasket.length; i++ ){
+        total += productInBasket[i].price;
+    }
+
+    console.log(total);
 
     const totalPrice = document.createElement('div');
     totalPrice.setAttribute('class', 'total');
-    totalPrice.textContent = "coucou";
+    totalPrice.textContent = "Prix total : " + total + " €";
     document.getElementById('cart').appendChild(totalPrice);
 
+    /*---- Suppression d'un produit du panier ----*/
+
+    const buttonSupp = document.querySelectorAll('.suppProduct'); 
+    console.log(buttonSupp);
+
     
-
-    /*for(i = 0; i < productInBasket.length; i++ ){
+    for(var i = 0; i < buttonSupp.length; i++){
+        buttonSupp[i].addEventListener('click', (event) =>{
+        event.preventDefault();    
         
-    }*/
+        localStorage.removeItem('checkedProduct');
+        document.location.reload() 
+        });  
 
-
+    /*------- Formulaire de commande -----*/
 
     const contactDetails = document.getElementById('contactDetail')
     contactDetails.innerHTML = `<div class="row mt-5 contact">
@@ -82,43 +108,12 @@ if (productInBasket === null){
                                 `
 
     
-    const buttonSupp = document.querySelector('.suppProduct'); 
 
-    buttonSupp.addEventListener('click', (event) =>{
-    event.preventDefault();
+        
+    }
 
-    localStorage.removeItem('checkedProduct');
-
-    document.location.reload()                                
-    });
+    
 
 
 
 }
-
-
-
-
-
-/*const addSelectedProduct = () => {
-    productInBasket.push(selectedProduct);
-    localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
-}
-
- Envoi du produit sélectionné dans le localStorage 
-if(productInBasket){
-    addSelectedProduct();
-    console.log(productInBasket);
-    popupConfirmation();
-
-}else{
-    productInBasket = [];
-    addSelectedProduct();
-    console.log(productInBasket);
-    popupConfirmation();
-} 
-
-"id" : product._id,
-"name" : product.name,
-"options" : productChoice,
-"price" : product.price / 100*/

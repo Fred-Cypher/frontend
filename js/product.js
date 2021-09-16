@@ -51,7 +51,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 options.forEach(function(element, key){
                     choice[key] = new Option(element, key);
                 });
-                
+
 
                 /* Mise des produits dans le panier */
 
@@ -66,10 +66,10 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                     const productChoice = formChoice.value;
 
                     let selectedProduct = {
-                        "id" : product._id,
-                        "name" : product.name,
-                        "options" : productChoice,
-                        "price" : product.price / 100
+                        id : product._id,
+                        name : product.name,
+                        options : productChoice,
+                        price : product.price / 100
                     }
 
                     let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
