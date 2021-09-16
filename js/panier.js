@@ -52,7 +52,9 @@ if (productInBasket === null){
                                             ${basketProducts.price} €
                                         </div>
                                         <div class="col-4">
-                                        <button type="button" class="btn suppProduct" id=""><img class ="trash" src="https://img.icons8.com/plasticine/50/000000/trash--v1.png"/></button>
+                                            <button type="button" class="btn suppProduct">
+                                                <img class ="trash" src="https://img.icons8.com/plasticine/50/000000/trash--v1.png"/>
+                                            </button>
                                         </div>
                                     </div>
                                     `
@@ -69,7 +71,7 @@ if (productInBasket === null){
     console.log(total);
 
     const totalPrice = document.createElement('div');
-    totalPrice.setAttribute('class', 'total');
+    totalPrice.setAttribute('class', 'total p-2');
     totalPrice.textContent = "Prix total : " + total + " €";
     document.getElementById('cart').appendChild(totalPrice);
 
@@ -78,7 +80,7 @@ if (productInBasket === null){
     const buttonSupp = document.querySelectorAll('.suppProduct'); 
     console.log(buttonSupp);
 
-    
+    /* supprime tous les produits 
     for(var i = 0; i < buttonSupp.length; i++){
         buttonSupp[i].addEventListener('click', (event) =>{
         event.preventDefault();    
@@ -86,6 +88,17 @@ if (productInBasket === null){
         localStorage.removeItem('checkedProduct');
         document.location.reload() 
         });  
+    }*/
+
+    buttonSupp.forEach((trash, key) => {
+        console.log(trash)
+        trash.addEventListener('click', (event) =>{
+            event.preventDefault();
+            localStorage.removeItem('checkedProduct', key);
+            document.location.reload()
+        })
+    } );
+
 
     /*------- Formulaire de commande -----*/
 
@@ -102,7 +115,7 @@ if (productInBasket === null){
                                         <input type="text" name="city" id="city" class="form-control" placeholder="Peacecity">
                                         <label for="email" class="form-label">Adresse e-mail :</label>
                                         <input type="email" name="email" id="email" class="form-control" placeholder="camille.dupont@peace.com">
-                                        <button type="submit" class="btn border-secondary">Envoyer</button>
+                                        <button type="submit" class="btn border-secondary">Envoyer la commande</button>
                                     </form>
                                 </div>
                                 `
@@ -110,7 +123,7 @@ if (productInBasket === null){
     
 
         
-    }
+    
 
     
 
