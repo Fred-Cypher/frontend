@@ -76,7 +76,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
 
                     /* Création d'une fenêtre popup pour confirmer l'enregistrement du produit */
                     const popupConfirmation = () => {
-                        if(window.confirm(`${product.name} a bien rejoint votre panier.
+                        if(window.confirm(`${product.name}, de couleur ${productChoice}, a bien rejoint votre panier.
                         Pour vérifier votre panier, cliquez sur OK, si vous voulez adoptez un autre nounours cliquez sur ANNULER`))
                         {
                             window.location.href = "../view/panier.html";

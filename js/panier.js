@@ -20,8 +20,8 @@ if (productInBasket === null || productInBasket == 0){
     /*------ Première ligne du tableau à afficher si le panier comporte des produits */
 
     const basketContents = document.getElementById('cart');
-    basketContents.innerHTML = `<p>Votre panier contient les produits suivants : </p>
-                                <div class="row p-2 border">
+    basketContents.innerHTML = `<p class="mt-4 mb-4"><strong>Votre panier contient les produits suivants : </strong></p>
+                                <div class="row p-2 border firstLine">
                                     <div class="col-3">
                                         Nom du produit
                                     </div>
@@ -63,7 +63,6 @@ if (productInBasket === null || productInBasket == 0){
     /*---- Suppression d'un produit du panier ----*/
 
     const buttonSupp = document.querySelectorAll('.suppProduct'); 
-    console.log(buttonSupp);
 
     buttonSupp.forEach((trash, key) => {
         trash.addEventListener('click', (event) =>{
@@ -82,8 +81,6 @@ if (productInBasket === null || productInBasket == 0){
     for(i = 0; i < productInBasket.length; i++ ){
         total += productInBasket[i].price;
     }
-
-    console.log(total);
 
     const totalPrice = document.createElement('div');
     totalPrice.setAttribute('class', 'total p-2');
@@ -112,47 +109,35 @@ if (productInBasket === null || productInBasket == 0){
     /*------- Formulaire de commande -----*/
 
     const contactDetails = document.getElementById('contactDetail')
-    contactDetails.innerHTML = `<div class="row mt-5 contact">
+    contactDetails.innerHTML = `<div class="row  contact m-5 pt-3 rounded-3">
+                                    <div class="col-7 mb-3">
+                                        <strong>Coordonnées</strong>
+                                    </div>
                                     <form action="" method="POST" class="form col-8" id="contactForm">
                                         <div class=" text-start">
                                             <label for="lastName" class="form-label">Nom :</label>
                                             <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Dupont" required>
-                                            <small>Texte validation ou pas</small>
+                                            <small></small>
                                         </div>
-                                        <div class=" text-start">
+                                        <div class="text-start">
                                             <label for="firstName" class="form-label">Prénom :</label>
                                             <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Camille" required>
+                                            <small></small>
                                         </div>
-                                        <div class=" text-start">
+                                        <div class="text-start">
                                             <label for="address" class="form-label">Adresse :</label>
                                             <input type="text" name="address" id="address" class="form-control" placeholder="2, rue de la Paix" required>
+                                            <small></small>
                                         </div>
-                                        <div class=" text-start">
-                                            <label for="codePostal" class="form-label">Code postal :</label>
-                                            <input type="text"  name="codePostal" id="codePostal" class="form-control" placeholder="00000" required>
-                                        </div>
-                                        <div class=" text-start">
+                                        <div class="text-start">
                                             <label for="city" class="form-label">Ville :</label>
                                             <input type="text" name="city" id="city" class="form-control" placeholder="Peacecity" required>
-                                        </div>
-                                        <div class=" text-start mt-3 mb-2">
-                                            <label for="country" class="form-label">Pays :</label>
-                                            <select name="country" id="country"  required>
-                                                <option value="choisir">Choisissez votre pays</option>
-                                                <option value="allemagne">Allemagne</option>
-                                                <option value="autriche">Autriche</option>
-                                                <option value="belgique">Belgique</option>
-                                                <option value="espagne">Espagne</option>
-                                                <option value="france">France</option>
-                                                <option value="grece">Grèce</option>
-                                                <option value="italie">Italie</option>
-                                                <option value="paysBas">Pays-Bas</option>
-                                                <option value="suisse">Suisse</option>
-                                            </select>
+                                            <small></small>
                                         </div>
                                         <div class=" text-start">
                                             <label for="email" class="form-label">Adresse e-mail :</label>
                                             <input type="email" name="email" id="email" class="form-control" placeholder="camille.dupont@peace.com" required>
+                                            <small></small>
                                         </div>
                                         <div class=" text-center">
                                             <button type="submit" class="btn mt-3 mb-4 p-2 pe-3 ps-3 rounded-pill sendCommand">Envoyer la commande</button>
@@ -168,9 +153,9 @@ if (productInBasket === null || productInBasket == 0){
 
 Validation : 
 
-nom et prénom : seulement lettres, minuscules ou majuscules, tiret
-adresse : lettres, chiffres, virgule, tiret
-ville : seulement lettres et tiret
+nom et prénom : seulement lettres, minuscules ou majuscules, tiret, espace
+adresse : lettres, chiffres, virgule, tiret, espace
+ville : seulement lettres et tiret, espace
 code postal : seulement chiffre, 5 chiffres (différent 5 Itl, Espa, All, Grèce / Suisse Belgique NL Autriche: 4)
 pays : récupère option
 adresse mail : "lettres, tiret, chiffre, underscore", "@", "lettres", ".", "lettres"
@@ -180,8 +165,158 @@ fonction validation nom --> affiche small
 fonction validation prénom --> affiche small
 fonction validation adresse --> affiche small
 fonction validation ville --> affiche small
-fonction validation code postal --> affiche small
-focntion validation pays --> affiche small
 fonction validation mail --> affiche small
 
 si tout OK, envoi formulaire, sinon demande corrigé champs X */
+
+/*--------- Vérification des différents champs du formulaire de contact  -------*/
+
+    // Récupération du formulaire 
+
+let form = document.querySelector('#contactForm');
+
+    // Validation du nom
+
+form.lastName.addEventListener('change', function(){
+    validLastName(this);
+})
+
+const validLastName = function(inputLastName) {
+    //Expression régulière pour vérifier que le nom ne comporte que des lettres (avec tiret ou espace)
+    let lastNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- -]+$', 'g');
+
+    //Récupération de la balise small située après l'input
+    let small = inputLastName.nextElementSibling;
+
+    //Affichage différent suivant la réponse du test de la RegExp
+    if(lastNameRegex.test(inputLastName.value)) {
+        inputLastName.setAttribute('class', 'form-control border border-success');
+        small.innerHTML = `<i class="fas fa-check"></i> OK`;
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+        return true;
+    } else {
+        inputLastName.setAttribute('class', 'form-control border border-danger');
+        small.innerHTML = `<i class="fas fa-times"></i> Le nom ne doit comporter que des lettres`;
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+        return false;
+    }
+}
+
+    // Validation du prénom
+
+form.firstName.addEventListener('change', function(){
+    validFirstName(this);
+})
+
+const validFirstName = function(inputFirstName) {
+    //Expression régulière pour vérifier que le prénom ne comporte que des lettres (avec tiret ou espace)
+    let firstNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
+
+    //Récupération de la balise small située après l'input
+    let small = inputFirstName.nextElementSibling;
+
+    //Affichage différent suivant la réponse du test de la RegExp
+    if(firstNameRegex.test(inputFirstName.value)) {
+        inputFirstName.setAttribute('class', 'form-control border border-success');
+        small.innerHTML = `<i class="fas fa-check"></i> OK`;
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+        return true;
+    } else {
+        inputFirstName.setAttribute('class', 'form-control border border-danger');
+        small.innerHTML = `<i class="fas fa-times"></i> Le prénom ne doit comporter que des lettres`;
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+        return false;
+    }
+}
+
+    // Validation de l'adresse
+
+form.address.addEventListener('change', function(){
+    validAddress(this);
+})
+
+const validAddress = function(inputAddress) {
+    //Expression régulière pour vérifier que l'adresse ne comporte que des lettres, des chiffres, tiret, espaces et virgule
+    let addressRegex = new RegExp('^[A-Za-z0-9À-ÖØ-öø-ÿ- ,]+$', 'g');
+
+    //Récupération de la balise small située après l'input
+    let small = inputAddress.nextElementSibling;
+
+    //Affichage différent suivant la réponse du test de la RegExp
+    if(addressRegex.test(inputAddress.value)) {
+        inputAddress.setAttribute('class', 'form-control border border-success');
+        small.innerHTML = `<i class="fas fa-check"></i> OK`;
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+        return true;
+    } else {
+        inputAddress.setAttribute('class', 'form-control border border-danger');
+        small.innerHTML = `<i class="fas fa-times"></i> L'adresse ne doit comporter que des lettres et des chiffres'`;
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+        return false;
+    }
+}
+
+    // Validation de la ville
+
+form.city.addEventListener('change', function(){
+    validCity(this);
+})
+
+const validCity = function(inputCity) {
+    //Expression régulière pour vérifier que la ville ne comporte que des lettres, tiret, espaces et virgule
+    let cityRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
+
+    //Récupération de la balise small située après l'input
+    let small = inputCity.nextElementSibling;
+
+    //Affichage différent suivant la réponse du test de la RegExp
+    if(cityRegex.test(inputCity.value)) {
+        inputCity.setAttribute('class', 'form-control border border-success');
+        small.innerHTML = `<i class="fas fa-check"></i> OK`;
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+        return true;
+    } else {
+        inputCity.setAttribute('class', 'form-control border border-danger');
+        small.innerHTML = `<i class="fas fa-times"></i> Le nom de la ville ne doit comporter que des lettres'`;
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+        return false;
+    }
+}
+
+    // Validation de l'adresse mail
+
+    form.email.addEventListener('change', function(){
+        validEmail(this);
+    })
+    
+    const validEmail = function(inputEmail) {
+        //Expression régulière pour vérifier que l'adresse mail est bien au bon format
+        let emailRegex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,5}$', 'g');
+    
+        //Récupération de la balise small située après l'input
+        let small = inputEmail.nextElementSibling;
+    
+        //Affichage différent suivant la réponse du test de la RegExp
+        if(emailRegex.test(inputEmail.value)) {
+            inputEmail.setAttribute('class', 'form-control border border-success');
+            small.innerHTML = `<i class="fas fa-check"></i> OK`;
+            small.classList.remove('text-danger');
+            small.classList.add('text-success');
+            return true;
+        } else {
+            inputEmail.setAttribute('class', 'form-control border border-danger');
+            small.innerHTML = `<i class="fas fa-times"></i> Veuillez entrer une adresse mail valide'`;
+            small.classList.remove('text-success');
+            small.classList.add('text-danger');
+            return false;
+        }
+    }
+
