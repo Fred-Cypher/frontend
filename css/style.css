@@ -191,3 +191,7 @@ ul{
     font-size: 1.5rem;
     text-shadow: 0.1rem 0.1rem 0.8rem #7131fa88;
 }
+
+.coord{
+    box-shadow: 0.2rem 0.2rem 0.8rem #ebbce165;
+}

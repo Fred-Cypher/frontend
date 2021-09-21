@@ -1,6 +1,9 @@
 /* Récupération des produits contenus dans le panier */
 
-let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'))
+let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
+let commandPrice = 0;
+
+console.log(productInBasket);
 
 
 if (productInBasket === null || productInBasket == 0){
@@ -109,7 +112,7 @@ if (productInBasket === null || productInBasket == 0){
     /*------- Formulaire de commande -----*/
 
     const contactDetails = document.getElementById('contactDetail')
-    contactDetails.innerHTML = `<div class="row  contact m-5 pt-3 rounded-3">
+    contactDetails.innerHTML = `<div class="row  contact m-5 pt-3 rounded-3 coord">
                                     <div class="col-7 mb-3">
                                         <strong>Coordonnées</strong>
                                     </div>
@@ -117,35 +120,34 @@ if (productInBasket === null || productInBasket == 0){
                                         <div class=" text-start">
                                             <label for="lastName" class="form-label">Nom :</label>
                                             <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Dupont" required>
-                                            <small></small>
+                                            <small class="smallLast"></small>
                                         </div>
                                         <div class="text-start">
                                             <label for="firstName" class="form-label">Prénom :</label>
                                             <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Camille" required>
-                                            <small></small>
+                                            <small class="smallFirst"></small>
                                         </div>
                                         <div class="text-start">
                                             <label for="address" class="form-label">Adresse :</label>
                                             <input type="text" name="address" id="address" class="form-control" placeholder="2, rue de la Paix" required>
-                                            <small></small>
+                                            <small class="smallAddress"></small>
                                         </div>
                                         <div class="text-start">
                                             <label for="city" class="form-label">Ville :</label>
                                             <input type="text" name="city" id="city" class="form-control" placeholder="Peacecity" required>
-                                            <small></small>
+                                            <small class="smallCity"></small>
                                         </div>
                                         <div class=" text-start">
                                             <label for="email" class="form-label">Adresse e-mail :</label>
                                             <input type="email" name="email" id="email" class="form-control" placeholder="camille.dupont@peace.com" required>
-                                            <small></small>
+                                            <small class="smallEmail"></small>
                                         </div>
                                         <div class=" text-center">
-                                            <button type="submit" class="btn mt-3 mb-4 p-2 pe-3 ps-3 rounded-pill sendCommand">Envoyer la commande</button>
+                                            <button type="submit" class="btn mt-3 mb-4 p-2 pe-3 ps-3 rounded-pill sendCommand" id="sendCommand">Envoyer la commande</button>
                                         </div>
                                     </form>
                                 </div>
                                 `
-
 }
 
 
@@ -179,144 +181,172 @@ let form = document.querySelector('#contactForm');
 
 form.lastName.addEventListener('change', function(){
     validLastName(this);
-})
+});
 
 const validLastName = function(inputLastName) {
     //Expression régulière pour vérifier que le nom ne comporte que des lettres (avec tiret ou espace)
     let lastNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- -]+$', 'g');
 
     //Récupération de la balise small située après l'input
-    let small = inputLastName.nextElementSibling;
+    let smallLast = document.querySelector('.smallLast');
 
     //Affichage différent suivant la réponse du test de la RegExp
     if(lastNameRegex.test(inputLastName.value)) {
         inputLastName.setAttribute('class', 'form-control border border-success');
-        small.innerHTML = `<i class="fas fa-check"></i> OK`;
-        small.classList.remove('text-danger');
-        small.classList.add('text-success');
+        smallLast.innerHTML = `<i class="fas fa-check"></i> OK`;
+        smallLast.classList.remove('text-danger');
+        smallLast.classList.add('text-success');
         return true;
     } else {
         inputLastName.setAttribute('class', 'form-control border border-danger');
-        small.innerHTML = `<i class="fas fa-times"></i> Le nom ne doit comporter que des lettres`;
-        small.classList.remove('text-success');
-        small.classList.add('text-danger');
+        smallLast.innerHTML = `<i class="fas fa-times"></i> Le nom ne doit comporter que des lettres`;
+        smallLast.classList.remove('text-success');
+        smallLast.classList.add('text-danger');
         return false;
     }
-}
+};
 
     // Validation du prénom
 
 form.firstName.addEventListener('change', function(){
     validFirstName(this);
-})
+});
 
 const validFirstName = function(inputFirstName) {
     //Expression régulière pour vérifier que le prénom ne comporte que des lettres (avec tiret ou espace)
-    let firstNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
+    let firstNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- -]+$', 'g');
 
     //Récupération de la balise small située après l'input
-    let small = inputFirstName.nextElementSibling;
+    let smallFirst = document.querySelector('.smallFirst');
 
     //Affichage différent suivant la réponse du test de la RegExp
     if(firstNameRegex.test(inputFirstName.value)) {
         inputFirstName.setAttribute('class', 'form-control border border-success');
-        small.innerHTML = `<i class="fas fa-check"></i> OK`;
-        small.classList.remove('text-danger');
-        small.classList.add('text-success');
+        smallFirst.innerHTML = `<i class="fas fa-check"></i> OK`;
+        smallFirst.classList.remove('text-danger');
+        smallFirst.classList.add('text-success');
         return true;
     } else {
-        inputFirstName.setAttribute('class', 'form-control border border-danger');
-        small.innerHTML = `<i class="fas fa-times"></i> Le prénom ne doit comporter que des lettres`;
-        small.classList.remove('text-success');
-        small.classList.add('text-danger');
+        inputLastName.setAttribute('class', 'form-control border border-danger');
+        smallFirst.innerHTML = `<i class="fas fa-times"></i> Le nom ne doit comporter que des lettres`;
+        smallFirst.classList.remove('text-success');
+        smallFirst.classList.add('text-danger');
         return false;
     }
-}
+};
 
     // Validation de l'adresse
 
 form.address.addEventListener('change', function(){
     validAddress(this);
-})
+});
 
 const validAddress = function(inputAddress) {
     //Expression régulière pour vérifier que l'adresse ne comporte que des lettres, des chiffres, tiret, espaces et virgule
     let addressRegex = new RegExp('^[A-Za-z0-9À-ÖØ-öø-ÿ- ,]+$', 'g');
 
     //Récupération de la balise small située après l'input
-    let small = inputAddress.nextElementSibling;
+    let smallAddress = document.querySelector('.smallAddress');
 
     //Affichage différent suivant la réponse du test de la RegExp
     if(addressRegex.test(inputAddress.value)) {
         inputAddress.setAttribute('class', 'form-control border border-success');
-        small.innerHTML = `<i class="fas fa-check"></i> OK`;
-        small.classList.remove('text-danger');
-        small.classList.add('text-success');
+        smallAddress.innerHTML = `<i class="fas fa-check"></i> OK`;
+        smallAddress.classList.remove('text-danger');
+        smallAddress.classList.add('text-success');
         return true;
     } else {
         inputAddress.setAttribute('class', 'form-control border border-danger');
-        small.innerHTML = `<i class="fas fa-times"></i> L'adresse ne doit comporter que des lettres et des chiffres'`;
-        small.classList.remove('text-success');
-        small.classList.add('text-danger');
+        smallAddress.innerHTML = `<i class="fas fa-times"></i> L'adresse ne doit comporter que des lettres et des chiffres'`;
+        smallAddress.classList.remove('text-success');
+        smallAddress.classList.add('text-danger');
         return false;
     }
-}
+};
 
     // Validation de la ville
 
 form.city.addEventListener('change', function(){
     validCity(this);
-})
+});
 
 const validCity = function(inputCity) {
     //Expression régulière pour vérifier que la ville ne comporte que des lettres, tiret, espaces et virgule
     let cityRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
 
     //Récupération de la balise small située après l'input
-    let small = inputCity.nextElementSibling;
+    let smallCity = document.querySelector('.smallCity');
 
     //Affichage différent suivant la réponse du test de la RegExp
     if(cityRegex.test(inputCity.value)) {
         inputCity.setAttribute('class', 'form-control border border-success');
-        small.innerHTML = `<i class="fas fa-check"></i> OK`;
-        small.classList.remove('text-danger');
-        small.classList.add('text-success');
+        smallCity.innerHTML = `<i class="fas fa-check"></i> OK`;
+        smallCity.classList.remove('text-danger');
+        smallCity.classList.add('text-success');
         return true;
     } else {
         inputCity.setAttribute('class', 'form-control border border-danger');
-        small.innerHTML = `<i class="fas fa-times"></i> Le nom de la ville ne doit comporter que des lettres'`;
-        small.classList.remove('text-success');
-        small.classList.add('text-danger');
+        smallCity.innerHTML = `<i class="fas fa-times"></i> Le nom de la ville ne doit comporter que des lettres'`;
+        smallCity.classList.remove('text-success');
+        smallCity.classList.add('text-danger');
         return false;
     }
-}
+};
 
     // Validation de l'adresse mail
 
-    form.email.addEventListener('change', function(){
-        validEmail(this);
-    })
-    
-    const validEmail = function(inputEmail) {
-        //Expression régulière pour vérifier que l'adresse mail est bien au bon format
-        let emailRegex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,5}$', 'g');
-    
-        //Récupération de la balise small située après l'input
-        let small = inputEmail.nextElementSibling;
-    
-        //Affichage différent suivant la réponse du test de la RegExp
-        if(emailRegex.test(inputEmail.value)) {
-            inputEmail.setAttribute('class', 'form-control border border-success');
-            small.innerHTML = `<i class="fas fa-check"></i> OK`;
-            small.classList.remove('text-danger');
-            small.classList.add('text-success');
-            return true;
-        } else {
-            inputEmail.setAttribute('class', 'form-control border border-danger');
-            small.innerHTML = `<i class="fas fa-times"></i> Veuillez entrer une adresse mail valide'`;
-            small.classList.remove('text-success');
-            small.classList.add('text-danger');
-            return false;
-        }
+form.email.addEventListener('change', function(){
+    validEmail(this);
+});
+
+const validEmail = function(inputEmail) {
+    //Expression régulière pour vérifier que l'adresse mail est bien au bon format
+    let emailRegex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,5}$', 'g');
+
+    //Récupération de la balise small située après l'input
+    let smallEmail = document.querySelector('.smallEmail');
+
+    //Affichage différent suivant la réponse du test de la RegExp
+    if(emailRegex.test(inputEmail.value)) {
+        inputEmail.setAttribute('class', 'form-control border border-success');
+        smallEmail.innerHTML = `<i class="fas fa-check"></i> OK`;
+        smallEmail.classList.remove('text-danger');
+        smallEmail.classList.add('text-success');
+        return true;
+    } else {
+        inputEmail.setAttribute('class', 'form-control border border-danger');
+        smallEmail.innerHTML = `<i class="fas fa-times"></i> Veuillez entrer une adresse mail valide'`;
+        smallEmail.classList.remove('text-success');
+        smallEmail.classList.add('text-danger');
+        return false;
     }
+};
+
+
+// Envoi de la commande
+
+let productInBasketId = [];
+productInBasket.forEach(element =>
+    productInBasketId.push(element.id));
+
+    console.log(productInBasketId);
+
+form.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    if(validLastName(form.lastName) && validFirstName(form.firstName) && validAddress(form.address) && validCity(form.city) && validEmail(form.email)){
+    
+    let command = {
+        contact : {
+        firstName : form.firstName.value,
+        lastName : form.lastName.value,
+        address : form.address.value,
+        city : form.city.value,
+        email : form.email.value
+        },
+        products : productInBasketId,
+    }
+}
+})
+
 
