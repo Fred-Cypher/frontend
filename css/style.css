@@ -195,3 +195,9 @@ ul{
 .coord{
     box-shadow: 0.2rem 0.2rem 0.8rem #ebbce165;
 }
+
+/*----- Confirmation commande -----*/
+
+.command{
+    background-color: #7131fa25;
+}

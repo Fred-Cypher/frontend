@@ -1,7 +1,6 @@
 /* Récupération des produits contenus dans le panier */
 
 let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
-let commandPrice = 0;
 
 console.log(productInBasket);
 
@@ -35,8 +34,7 @@ if (productInBasket === null || productInBasket == 0){
                                         Prix
                                     </div>
                                     <div class="col-4">
-                                    Supprimer
-
+                                        Supprimer
                                     </div>
                                 </div> 
                                 `
@@ -80,7 +78,7 @@ if (productInBasket === null || productInBasket == 0){
 
     /*------ Calcul du prix total de la commande --------*/
 
-    let total = 0;
+    var total = 0;
     for(i = 0; i < productInBasket.length; i++ ){
         total += productInBasket[i].price;
     }
@@ -346,7 +344,32 @@ form.addEventListener('submit', function(event){
         },
         products : productInBasketId,
     }
+
+    console.log(command);
+
+    let fetchData = {
+        method: 'POST',
+        body: JSON.stringify(command),
+        headers: {'Content-Type': 'application/json'}
+    }
+    
+    
+
+    fetch('http://localhost:3000/api/teddies/order', fetchData)
+        .then(response => response.json())
+        .then(dataOrder => {
+            localStorage.setItem('confirmation', JSON.stringify(command));
+            localStorage.setItem('total', JSON.stringify(total));
+            localStorage.setItem('orderId', dataOrder.orderId);
+            window.location.href = "confirmation.html"
+        } )
+
+    
 }
+
+
+
+    
 })
 
 
