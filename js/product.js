@@ -11,19 +11,19 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
     .then(dataProduct => {
         for(let product of dataProduct){ 
 
-            /* Récupération des caractéristiques du produit grâce à son numéro d'identification */
+            // Récupération des caractéristiques du produit grâce à son numéro d'identification 
 
             if (idProduct == product._id){
                 let createProduct = document.createElement('div');
                 createProduct.setAttribute("class", "col-10 mt-4 mb-4");
 
-                /* Code à envoyer sur la page HTML pour que le produit s'affiche correctement */
+                // Code à envoyer sur la page HTML pour que le produit s'affiche correctement 
 
                 createProduct.innerHTML = ` <div class="col-12">
                                                 <div class="card mt-4 mb-5 productCard">
                                                     <div class="row g-0">
                                                         <div class="col-6">
-                                                            <img class="img-fluid cardImage" src="${product.imageUrl}" alt="Produit à commander" />
+                                                            <img class="img-fluid cardImage" src="${product.imageUrl}" alt="Nounours ${product.name}" />
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="card-body">
@@ -43,17 +43,17 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                                             
                 document.getElementById('product').appendChild(createProduct);
 
-                /* Choix de la couleur */
+                // Choix de la couleur 
 
                 let choice = document.getElementById('choice');
                 let options = product.colors;
 
                 options.forEach(function(element, key){
-                    choice[key] = new Option(element, element); // envoie la couleur dans la value du Select
+                    choice[key] = new Option(element, element); // le deuxième "element" envoie la couleur dans la value du Select
                 });
 
 
-                /* Mise des produits dans le panier */
+                // Mise des produits dans le panier 
 
                 const formChoice = document.querySelector('#choice');
 
@@ -62,7 +62,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 buttonAdd.addEventListener('click', (event)=>{
                     event.preventDefault();
                     
-                    /* Récupération de l'option couleur */
+                    // Récupération de l'option couleur 
                     const productChoice = formChoice.value;
 
                     let selectedProduct = {
@@ -74,7 +74,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
 
                     let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
 
-                    /* Création d'une fenêtre popup pour confirmer l'enregistrement du produit */
+                    // Création d'une fenêtre popup pour confirmer l'enregistrement du produit 
                     const popupConfirmation = () => {
                         if(window.confirm(`${product.name}, de couleur ${productChoice}, a bien rejoint votre panier.
                         Pour vérifier votre panier, cliquez sur OK, si vous voulez adoptez un autre nounours cliquez sur ANNULER`))
@@ -85,13 +85,13 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                         }
                     }
 
-                    /* Fonction permettant d'envoyer le produit dans le panier */
+                    // Fonction permettant d'envoyer le produit dans le panier 
                     const addSelectedProduct = () => {
                         productInBasket.push(selectedProduct);
                         localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
                     }
 
-                    /* Envoi du produit sélectionné dans le localStorage */
+                    // Envoi du produit sélectionné dans le localStorage 
                     if(productInBasket){
                         addSelectedProduct();
                         console.log(productInBasket);

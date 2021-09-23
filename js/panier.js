@@ -4,10 +4,11 @@ let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
 
 console.log(productInBasket);
 
+/*------------ Affichage différent suivant que le panier est plein ou vide -------------- */
 
 if (productInBasket === null || productInBasket == 0){
 
-    /*------ À afficher si le panier est vide ----- */
+    // À afficher si le panier est vide 
     const basketContents = document.getElementById('cart');
     basketContents.innerHTML = `<div class="row">
                                     <div class="col-12 mt-5 mb-5 pt-3 pb-3 text-center emptyBasket">
@@ -19,7 +20,7 @@ if (productInBasket === null || productInBasket == 0){
 } else {
 
 
-    /*------ Première ligne du tableau à afficher si le panier comporte des produits */
+    // Première ligne du tableau à afficher si le panier comporte des produits 
 
     const basketContents = document.getElementById('cart');
     basketContents.innerHTML = `<p class="mt-4 mb-4"><strong>Votre panier contient les produits suivants : </strong></p>
@@ -39,7 +40,7 @@ if (productInBasket === null || productInBasket == 0){
                                 </div> 
                                 `
 
-    /*----- Affichage des produits contenus dans le panier -----*/                            
+    // Affichage des produits contenus dans le panier                       
 
     for (let basketProducts of productInBasket){
         basketContents.innerHTML += `<div class="row fullBasket p-2 border">
@@ -61,14 +62,14 @@ if (productInBasket === null || productInBasket == 0){
                                     `
     };
 
-    /*---- Suppression d'un produit du panier ----*/
+    // Suppression d'un produit du panier 
 
     const buttonSupp = document.querySelectorAll('.suppProduct'); 
 
     buttonSupp.forEach((trash, key) => {
         trash.addEventListener('click', (event) =>{
             event.preventDefault();
-            let productSupp = productInBasket.splice(key, 1); //élèment correspondant à key (indice dans la tableau) supprimé
+            let productSupp = productInBasket.splice(key, 1); //élèment correspondant à key (indice dans le tableau) supprimé
             console.log(productSupp);
             localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
 
@@ -76,7 +77,7 @@ if (productInBasket === null || productInBasket == 0){
         })
     } );
 
-    /*------ Calcul du prix total de la commande --------*/
+    // Calcul du prix total de la commande 
 
     var total = 0;
     for(i = 0; i < productInBasket.length; i++ ){
@@ -88,7 +89,7 @@ if (productInBasket === null || productInBasket == 0){
     totalPrice.textContent = "Prix total : " + total + " €";
     document.getElementById('cart').appendChild(totalPrice);
 
-    /*----- Bouton pour vider complètement le panier ---*/
+    // Bouton pour vider complètement le panier 
 
     const clearBasket = document.createElement('div');
     clearBasket.setAttribute('class', 'clearedBasket');
@@ -107,7 +108,7 @@ if (productInBasket === null || productInBasket == 0){
     });
 
 
-    /*------- Formulaire de commande -----*/
+    // Formulaire de contact 
 
     const contactDetails = document.getElementById('contactDetail')
     contactDetails.innerHTML = `<div class="row  contact m-5 pt-3 rounded-3 coord">
@@ -148,34 +149,13 @@ if (productInBasket === null || productInBasket == 0){
                                 `
 }
 
-
-/*Envoyer en fetch(POST) les données du formulaire client et créer idCommande, order Id
-
-Validation : 
-
-nom et prénom : seulement lettres, minuscules ou majuscules, tiret, espace
-adresse : lettres, chiffres, virgule, tiret, espace
-ville : seulement lettres et tiret, espace
-code postal : seulement chiffre, 5 chiffres (différent 5 Itl, Espa, All, Grèce / Suisse Belgique NL Autriche: 4)
-pays : récupère option
-adresse mail : "lettres, tiret, chiffre, underscore", "@", "lettres", ".", "lettres"
-
-
-fonction validation nom --> affiche small 
-fonction validation prénom --> affiche small
-fonction validation adresse --> affiche small
-fonction validation ville --> affiche small
-fonction validation mail --> affiche small
-
-si tout OK, envoi formulaire, sinon demande corrigé champs X */
-
 /*--------- Vérification des différents champs du formulaire de contact  -------*/
 
     // Récupération du formulaire 
 
 let form = document.querySelector('#contactForm');
 
-    // Validation du nom
+    //------- Validation du nom
 
 form.lastName.addEventListener('change', function(){
     validLastName(this);
@@ -204,7 +184,7 @@ const validLastName = function(inputLastName) {
     }
 };
 
-    // Validation du prénom
+    //--------- Validation du prénom
 
 form.firstName.addEventListener('change', function(){
     validFirstName(this);
@@ -225,7 +205,7 @@ const validFirstName = function(inputFirstName) {
         smallFirst.classList.add('text-success');
         return true;
     } else {
-        inputLastName.setAttribute('class', 'form-control border border-danger');
+        inputFirstName.setAttribute('class', 'form-control border border-danger');
         smallFirst.innerHTML = `<i class="fas fa-times"></i> Le nom ne doit comporter que des lettres`;
         smallFirst.classList.remove('text-success');
         smallFirst.classList.add('text-danger');
@@ -233,7 +213,7 @@ const validFirstName = function(inputFirstName) {
     }
 };
 
-    // Validation de l'adresse
+    // -------- Validation de l'adresse
 
 form.address.addEventListener('change', function(){
     validAddress(this);
@@ -262,7 +242,7 @@ const validAddress = function(inputAddress) {
     }
 };
 
-    // Validation de la ville
+    //---------- Validation de la ville
 
 form.city.addEventListener('change', function(){
     validCity(this);
@@ -291,7 +271,7 @@ const validCity = function(inputCity) {
     }
 };
 
-    // Validation de l'adresse mail
+    //----------- Validation de l'adresse mail
 
 form.email.addEventListener('change', function(){
     validEmail(this);
@@ -321,17 +301,23 @@ const validEmail = function(inputEmail) {
 };
 
 
-// Envoi de la commande
+/*---------  Envoi de la commande ----------*/
+
+// Récupération de l'id des produits du panier
 
 let productInBasketId = [];
 productInBasket.forEach(element =>
     productInBasketId.push(element.id));
+
+
+// Envoi du formulaire
 
 form.addEventListener('submit', function(event){
     event.preventDefault();
 
     if(validLastName(form.lastName) && validFirstName(form.firstName) && validAddress(form.address) && validCity(form.city) && validEmail(form.email)){
     
+        // Création de l'objet command contenant les valeurs recueillies dans le formulaire et les id des produits
     let command = {
         contact : {
         firstName : form.firstName.value,
@@ -345,14 +331,13 @@ form.addEventListener('submit', function(event){
 
     console.log(command);
 
+    // Envoi des données au backend
     let fetchData = {
         method: 'POST',
         body: JSON.stringify(command),
         headers: {'Content-Type': 'application/json'}
     }
     
-    
-
     fetch('http://localhost:3000/api/teddies/order', fetchData)
         .then(response => response.json())
         .then(dataOrder => {
@@ -365,6 +350,4 @@ form.addEventListener('submit', function(event){
     
 }
 
-})
-
-
+});
