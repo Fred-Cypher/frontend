@@ -198,6 +198,15 @@ ul{
 
 /*----- Confirmation commande -----*/
 
-.command{
+.command, .validationButton{
     background-color: #7131fa25;
+}
+
+.validationButton{
+    background-color: #7131fa25;
+    border : 1px solid #7131fa4f;
+}
+
+.validationButton:hover{
+    box-shadow: 0.3em 0.5em 0.4em #8f5bfe6e;
 }

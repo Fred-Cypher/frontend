@@ -327,8 +327,6 @@ let productInBasketId = [];
 productInBasket.forEach(element =>
     productInBasketId.push(element.id));
 
-    console.log(productInBasketId);
-
 form.addEventListener('submit', function(event){
     event.preventDefault();
 
@@ -367,9 +365,6 @@ form.addEventListener('submit', function(event){
     
 }
 
-
-
-    
 })
 
 
