@@ -3,6 +3,14 @@
 let params = new URL(document.location).searchParams;
 let idProduct = params.get('id');
 
+let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
+
+if(numberProduct){
+    const numberProducts = document.getElementById('quantity');
+    numberProducts.innerHTML = `<div class="circleNumber">
+                                        ${numberProduct} 
+                                </div>`
+};
 
 /* ---- Affichage de la fiche produit----- */
 
@@ -94,16 +102,19 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                     // Envoi du produit sélectionné dans le localStorage 
                     if(productInBasket){
                         addSelectedProduct();
-                        console.log(productInBasket);
                         popupConfirmation();
 
                     }else{
                         productInBasket = [];
                         addSelectedProduct();
-                        console.log(productInBasket);
                         popupConfirmation();
-                    }
-                })
-            }
-        }
-    })
+                    };
+
+                        // Affichage du nombre de produits dans le panier
+
+                    let numberProduct = productInBasket.length;
+                    localStorage.setItem('quantityProducts', JSON.stringify(numberProduct)); 
+                });
+            };
+        };
+    });
