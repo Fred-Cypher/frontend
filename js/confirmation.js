@@ -13,20 +13,20 @@ console.log(orderId);
 
 let confirmationOrder = document.createElement('div');
 confirmationOrder.innerHTML = `<div class="d-flex align-items-stretch row">
-                                    <div class="col-10 mx-auto mt-3 mb-3 text-center endText rounded-3">
+                                    <div class="col-10  mt-3 mb-3 text-center endText rounded-3">
                                         <div class="col-9 mx-auto mt-3 mb-3">
                                             <span>${command.contact.firstName}</span>, l'équipe d'Orinoco vous remercie pour votre commande.
                                         </div>
-                                        <div class="col-9 mx-auto mt-3 mb-3">Nous espérons vous revoir très bientôt sur notre site, de nouveaux nounours viendrons prochainement nous rejoindre et seront contents de faire votre connaissance.</div>
-                                        <div class="col-9 mx-auto mt-3 mb-4">Votre commande n° : <span>${orderId}</span>, d'un montant de <span>${total}</span> €, arrivera le plus rapidement possible à cette adresse :<br>
+                                        <div class="col-md-9 mx-auto mt-3 mb-3">Nous espérons vous revoir très bientôt sur notre site, de nouveaux nounours viendrons prochainement nous rejoindre et seront contents de faire votre connaissance.</div>
+                                        <div class="col-md-9 mx-auto mt-3 mb-4">Votre commande n° : <span>${orderId}</span>, d'un montant de <span>${total}</span> €, arrivera le plus rapidement possible à cette adresse :<br>
                                             <div class="mt-3 mb-4">
                                                 ${command.contact.firstName} ${command.contact.lastName}<br>
                                                 ${command.contact.address}<br>
-                                                ${command.contact.city}
+                                                ${command.contact.city}s
                                             </div>
                                         </div>
                                         <a href="/index.html">
-                                            <button class="col-5 validationButton rounded-pill mt-3 mb-2  pt-2 pb-2">Retour à l'accueil</button>
+                                            <button class="col-md-5 col-sm-10 validationButton rounded-pill mt-3 mb-2 pt-2 pb-2">Retour à l'accueil</button>
                                         </a>
                                     </div>
                                     

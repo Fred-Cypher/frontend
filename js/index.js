@@ -1,3 +1,16 @@
+/* --------- Affichage du nombre de produits dans le panier -------  */
+
+let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
+
+if(numberProduct){
+    const numberProducts = document.getElementById('quantity');
+    numberProducts.innerHTML = `<div class="leftHear"></div>
+                                <div class="rightHear"></div>
+                                <div class="circleNumber">
+                                        ${numberProduct} 
+                                </div>`
+};
+
 /*---------- Récupération des données des produits -----------*/
 
 fetch('http://localhost:3000/api/teddies')
@@ -23,4 +36,12 @@ fetch('http://localhost:3000/api/teddies')
                                                 </a>
                                             </div>`;
         }
+    })
+    .catch(function(error) {
+        const err = document.getElementById('articles');
+
+        err.innerHTML = `<div class="col-12 message">
+                        Une erreur est survenue lors de la connexion avec le serveur. <br>
+                        Vérifier que le serveur est correctement lancé.
+                        </div>`
     });

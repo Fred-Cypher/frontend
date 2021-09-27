@@ -36,6 +36,11 @@ header, footer{
     height: 4rem;
 }
 
+.enterpriseDescription{
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
 .pageLink{
     display: flex;
     flex-direction: row;
@@ -89,7 +94,13 @@ a:hover{
 
 .cardImage{
     height: 16rem;
-    width: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.cardImageSolo{
+    height: 100%;
+    width: auto;
     object-fit: cover;
 }
 
@@ -97,6 +108,9 @@ a:hover{
     text-align: right;
 }
 
+.addProduct:hover{
+    background-color: #f3e9f1c2;
+}
 
 /*------ Footer -------*/
 
@@ -105,7 +119,7 @@ footer{
 }
 
 .credit{
-    font-size: 0.5rem;
+    font-size: 0.7rem;
 }
 
 ul{
@@ -233,4 +247,27 @@ ul{
     border-radius: 50%;
     color : white;
     font-weight: 550;
+}
+
+.leftHear{
+    position: relative;
+    top : 5.5rem;
+    right: 1.6rem;
+    border : 1px solid #7131fa4f;
+    width : 0.7rem;
+    height: 0.7rem;
+    background-color: #b18efc;
+    border-radius: 50%;
+    color : white;
+}
+.rightHear{
+    position: relative;
+    top : 4.8rem;
+    right: 0.6rem;
+    border : 1px solid #7131fa4f;
+    width : 0.7rem;
+    height: 0.7rem;
+    background-color: #b18efc;
+    border-radius: 50%;
+    color : white;
 }

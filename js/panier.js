@@ -4,6 +4,19 @@ let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
 
 console.log(productInBasket);
 
+/* --------- Affichage du nombre de produits dans le panier -------  */
+
+let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
+
+if(numberProduct){
+    const numberProducts = document.getElementById('quantity');
+    numberProducts.innerHTML = `<div class="leftHear"></div>
+                                <div class="rightHear"></div>
+                                <div class="circleNumber">
+                                        ${numberProduct} 
+                                </div>`
+};
+
 /*------------ Affichage différent suivant que le panier est plein ou vide -------------- */
 
 if (productInBasket === null || productInBasket == 0){
@@ -72,7 +85,8 @@ if (productInBasket === null || productInBasket == 0){
             let productSupp = productInBasket.splice(key, 1); //élèment correspondant à key (indice dans le tableau) supprimé
             console.log(productSupp);
             localStorage.setItem('checkedProduct', JSON.stringify(productInBasket));
-
+            let numberProduct = productInBasket.length;
+            localStorage.setItem('quantityProducts', JSON.stringify(numberProduct)); 
             document.location.reload()
         })
     } );
@@ -111,11 +125,11 @@ if (productInBasket === null || productInBasket == 0){
     // Formulaire de contact 
 
     const contactDetails = document.getElementById('contactDetail')
-    contactDetails.innerHTML = `<div class="row  contact m-5 pt-3 rounded-3 coord">
+    contactDetails.innerHTML = `<div class="row  contact m-md-5 pt-3 rounded-3 coord">
                                     <div class="col-7 mb-3">
                                         <strong>Coordonnées</strong>
                                     </div>
-                                    <form action="" method="POST" class="form col-8" id="contactForm">
+                                    <form action="" method="POST" class="form col-md-8" id="contactForm">
                                         <div class=" text-start">
                                             <label for="lastName" class="form-label">Nom :</label>
                                             <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Dupont" required>
