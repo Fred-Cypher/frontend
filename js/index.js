@@ -37,11 +37,14 @@ fetch('http://localhost:3000/api/teddies')
                                             </div>`;
         }
     })
+
+    // Retour lors d'une erreur de connexion
+
     .catch(function(error) {
         const err = document.getElementById('articles');
 
         err.innerHTML = `<div class="col-12 message">
-                        Une erreur est survenue lors de la connexion avec le serveur. <br>
-                        Vérifier que le serveur est correctement lancé.
+                            Une erreur est survenue lors de la connexion avec le serveur. <br>
+                            Vérifier que le serveur est correctement lancé.
                         </div>`
     });

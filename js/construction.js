@@ -7,6 +7,6 @@ if(numberProduct){
     numberProducts.innerHTML = `<div class="leftHear"></div>
                                 <div class="rightHear"></div>
                                 <div class="circleNumber">
-                                        ${numberProduct} 
+                                    ${numberProduct} 
                                 </div>`
 };

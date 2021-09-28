@@ -84,7 +84,6 @@ a:hover{
 
 .card{
     height: auto;
-    /*border: 1px solid #8F5BFE;*/
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
@@ -106,10 +105,6 @@ a:hover{
 
 .price{
     text-align: right;
-}
-
-.addProduct:hover{
-    background-color: #f3e9f1c2;
 }
 
 /*------ Footer -------*/
@@ -138,7 +133,7 @@ ul{
     color:#7031fa;
 }
 
-/*--- Product ----*/
+/*-- Product --*/
 
 #product{
     display: flex;
@@ -151,8 +146,13 @@ ul{
     object-fit: cover;
 }
 
-#product button{
+.addProduct{
     width: 100%;
+    border : 1px solid rgb(207, 207, 207);
+}
+.addProduct:hover{
+    background-color: #f3e9f1b0;
+    border : 1px solid #eec3e5;
 }
 
 /*-- Construction --*/
@@ -163,7 +163,7 @@ ul{
     text-shadow: 0.2rem 0.2rem 0.8rem #7131fa73;
 }
 
-/*--- Panier --*/
+/*-- Panier --*/
 
 .trash{
     height: 1.6rem;
@@ -205,9 +205,9 @@ ul{
     box-shadow: 0.2rem 0.2rem 0.8rem #ebbce165;
 }
 
-/*----- Confirmation commande -----*/
+/*-- Confirmation commande --*/
 
-.command, .validationButton{
+.command{
     background-color: #7131fa25;
 }
 
@@ -231,7 +231,7 @@ ul{
 }
 
 
-/*--------- Nombre de produits dans la panier ----------- */
+/*-- Nombre de produits dans le panier -- */
 
 .circleNumber{
     display: flex;
