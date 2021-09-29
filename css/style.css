@@ -87,7 +87,7 @@ a:hover{
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
-.card:hover{
+.cardIndex:hover{
     box-shadow: 0.1em 0.5em 1em #8f5bfe6e;
 }
 
@@ -151,8 +151,8 @@ ul{
     border : 1px solid rgb(207, 207, 207);
 }
 .addProduct:hover{
-    background-color: #f3e9f1b0;
-    border : 1px solid #eec3e5;
+    background-color: #f3e9f171;
+    border : 1px solid #ecb7e1;
 }
 
 /*-- Construction --*/
@@ -251,8 +251,8 @@ ul{
 
 .leftHear{
     position: relative;
-    top : 5.5rem;
-    right: 1.6rem;
+    top : 5.55em;
+    right: 1.65em;
     border : 1px solid #7131fa4f;
     width : 0.7rem;
     height: 0.7rem;
@@ -262,8 +262,8 @@ ul{
 }
 .rightHear{
     position: relative;
-    top : 4.8rem;
-    right: 0.6rem;
+    top : 4.85em;
+    right: 0.5em;
     border : 1px solid #7131fa4f;
     width : 0.7rem;
     height: 0.7rem;

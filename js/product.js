@@ -32,7 +32,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 // Code à envoyer sur la page HTML pour que le produit s'affiche correctement 
 
                 createProduct.innerHTML = ` <div class="col-12">
-                                                <div class="card mt-4 mb-5 productCard">
+                                                <div class="card rounded-3 mt-4 mb-5 productCard">
                                                     <div class="row g-0">
                                                         <div class="col-md-6 col-sm-12">
                                                             <img class="img-fluid cardImageSolo" src="${product.imageUrl}" alt="Nounours ${product.name}" />
@@ -52,7 +52,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                                                                 <p class="price m-3 text-end pt-3">
                                                                     Prix : <strong>${product.price / 100} €</strong>
                                                                 </p>
-                                                                <button type="button" class="btn addProduct">Ajouter au panier</button>
+                                                                <button type="button" class="btn addProduct mb-1 rounded-pill">Ajouter au panier</button>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -26,7 +26,7 @@ fetch('http://localhost:3000/api/teddies')
 
             articlesContainer.innerHTML += `<div class="col-12 col-lg-4">
                                                 <a href="./view/product.html?id=${article._id}">
-                                                    <div class="card mt-4 mb-5">
+                                                    <div class="card cardIndex mt-4 mb-5">
                                                         <img class="card-img-top cardImage" src="${article.imageUrl}" alt="Nounours ${article.name}" />
                                                         <div class="card-body text-center">
                                                         <div class="card-title h5">${article.name}</div>
