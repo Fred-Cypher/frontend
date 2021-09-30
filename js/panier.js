@@ -180,7 +180,7 @@ form.lastName.addEventListener('change', function(){
 
 const validLastName = function(inputLastName) {
     // Expression régulière pour vérifier que le nom ne comporte que des lettres (avec tiret ou espace)
-    let lastNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
+    let lastNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ-\' ]+$', 'g');
 
     // Récupération de la balise small située après l'input
     let smallLast = document.querySelector('.smallLast');
@@ -238,7 +238,7 @@ form.address.addEventListener('change', function(){
 
 const validAddress = function(inputAddress) {
     // Expression régulière pour vérifier que l'adresse ne comporte que des lettres, des chiffres, tiret, espaces et virgule
-    let addressRegex = new RegExp('^[A-Za-z0-9À-ÖØ-öø-ÿ- ,]+$', 'g');
+    let addressRegex = new RegExp('^[A-Za-z0-9À-ÖØ-öø-ÿ- ,\']+$', 'g');
 
     // Récupération de la balise small située après l'input
     let smallAddress = document.querySelector('.smallAddress');
@@ -267,7 +267,7 @@ form.city.addEventListener('change', function(){
 
 const validCity = function(inputCity) {
     // Expression régulière pour vérifier que la ville ne comporte que des lettres, tiret, espaces et virgule
-    let cityRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
+    let cityRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- \']+$', 'g');
 
     // Récupération de la balise small située après l'input
     let smallCity = document.querySelector('.smallCity');

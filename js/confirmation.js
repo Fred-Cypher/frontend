@@ -23,7 +23,7 @@ confirmationOrder.innerHTML = `<div class="d-flex align-items-stretch row">
                                                 ${command.contact.city}
                                             </div>
                                         </div>
-                                        <a href="/index.html">
+                                        <a href="../index.html">
                                             <button class="col-md-5 col-sm-10 validationButton rounded-pill mt-3 mb-2 pt-2 pb-2">Retour à l'accueil</button>
                                         </a>
                                     </div>
