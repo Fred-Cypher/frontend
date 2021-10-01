@@ -92,7 +92,7 @@ if (productInBasket === null || productInBasket == 0){
             localStorage.setItem('quantityProducts', JSON.stringify(numberProduct)); 
             document.location.reload()
         })
-    } );
+    });
 
     // Calcul et affichage du prix total de la commande 
 
@@ -186,7 +186,7 @@ const validLastName = function(inputLastName) {
     let smallLast = document.querySelector('.smallLast');
 
     // Affichage différent suivant la réponse du test de la RegExp
-    if(lastNameRegex.test(inputLastName.value)) {
+    if(lastNameRegex.test(inputLastName.value.trim())) {
         inputLastName.setAttribute('class', 'form-control border border-success');
         smallLast.innerHTML = `<i class="fas fa-check"></i> OK`;
         smallLast.classList.remove('text-danger');
@@ -209,13 +209,13 @@ form.firstName.addEventListener('change', function(){
 
 const validFirstName = function(inputFirstName) {
     // Expression régulière pour vérifier que le prénom ne comporte que des lettres (avec tiret ou espace)
-    let firstNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$', 'g');
+    let firstNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ-\' ]+$', 'g');
 
     // Récupération de la balise small située après l'input
     let smallFirst = document.querySelector('.smallFirst');
 
     // Affichage différent suivant la réponse du test de la RegExp
-    if(firstNameRegex.test(inputFirstName.value)) {
+    if(firstNameRegex.test(inputFirstName.value.trim())) {
         inputFirstName.setAttribute('class', 'form-control border border-success');
         smallFirst.innerHTML = `<i class="fas fa-check"></i> OK`;
         smallFirst.classList.remove('text-danger');
@@ -244,7 +244,7 @@ const validAddress = function(inputAddress) {
     let smallAddress = document.querySelector('.smallAddress');
 
     // Affichage différent suivant la réponse du test de la RegExp
-    if(addressRegex.test(inputAddress.value)) {
+    if(addressRegex.test(inputAddress.value.trim())) {
         inputAddress.setAttribute('class', 'form-control border border-success');
         smallAddress.innerHTML = `<i class="fas fa-check"></i> OK`;
         smallAddress.classList.remove('text-danger');
@@ -273,7 +273,7 @@ const validCity = function(inputCity) {
     let smallCity = document.querySelector('.smallCity');
 
     // Affichage différent suivant la réponse du test de la RegExp
-    if(cityRegex.test(inputCity.value)) {
+    if(cityRegex.test(inputCity.value.trim())) {
         inputCity.setAttribute('class', 'form-control border border-success');
         smallCity.innerHTML = `<i class="fas fa-check"></i> OK`;
         smallCity.classList.remove('text-danger');
@@ -302,7 +302,7 @@ const validEmail = function(inputEmail) {
     let smallEmail = document.querySelector('.smallEmail');
 
     // Affichage différent suivant la réponse du test de la RegExp
-    if(emailRegex.test(inputEmail.value)) {
+    if(emailRegex.test(inputEmail.value.trim())) {
         inputEmail.setAttribute('class', 'form-control border border-success');
         smallEmail.innerHTML = `<i class="fas fa-check"></i> OK`;
         smallEmail.classList.remove('text-danger');
@@ -360,6 +360,6 @@ form.addEventListener('submit', function(event){
                 localStorage.setItem('total', JSON.stringify(total));
                 localStorage.setItem('orderId', dataOrder.orderId);
                 window.location.href = "confirmation.html"
-            } )
+            })
     };
 });

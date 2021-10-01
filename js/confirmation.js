@@ -32,4 +32,3 @@ confirmationOrder.innerHTML = `<div class="d-flex align-items-stretch row">
 document.getElementById('confirmOrder').appendChild(confirmationOrder);
 
 localStorage.clear();
-

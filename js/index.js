@@ -1,4 +1,4 @@
-/* --------- Affichage du nombre de produits dans le panier -------  */
+/* --------- Affichage du nombre de produits dans le panier ------- */
 
 let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
 
@@ -7,7 +7,7 @@ if(numberProduct){
     numberProducts.innerHTML = `<div class="leftHear"></div>
                                 <div class="rightHear"></div>
                                 <div class="circleNumber">
-                                        ${numberProduct} 
+                                    ${numberProduct} 
                                 </div>`
 };
 
