@@ -1,4 +1,4 @@
-/* --------- Affichage du nombre de produits dans le panier -------  */
+/* ----- Affichage du nombre de produits dans le panier ----- */
 
 let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
 
