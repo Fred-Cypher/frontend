@@ -1,4 +1,4 @@
-/* ----- Affichage du nombre de produits dans le panier ----- */
+/* --------- Affichage du nombre de produits dans le panier ------- */
 
 let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
 
@@ -11,7 +11,7 @@ if(numberProduct){
                                 </div>`
 };
 
-/* ----- Récupération des données des produits ----- */
+/*---------- Récupération des données des produits -----------*/
 
 fetch('http://localhost:3000/api/teddies')
     .then(response => response.json())
@@ -29,14 +29,12 @@ fetch('http://localhost:3000/api/teddies')
                                                     <div class="card cardIndex mt-4 mb-5">
                                                         <img class="card-img-top cardImage" src="${article.imageUrl}" alt="Nounours ${article.name}" />
                                                         <div class="card-body text-center">
-                                                            <div class="card-title h5">
-                                                                ${article.name}
-                                                            </div>
+                                                        <div class="card-title h5">${article.name}</div>
                                                             <span class="price">Prix : <strong>${article.price / 100} €</strong></span>
                                                         </div>
                                                     </div>
                                                 </a>
-                                            </div>`
+                                            </div>`;
         }
     })
 

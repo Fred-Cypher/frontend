@@ -1,8 +1,8 @@
-/* ----- Récupération des produits contenus dans le panier ----- */
+/* Récupération des produits contenus dans le panier */
 
 let productInBasket = JSON.parse(localStorage.getItem('checkedProduct'));
 
-/* ----- Affichage du nombre de produits dans le panier ----- */
+/* --------- Affichage du nombre de produits dans le panier -------  */
 
 let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
 
@@ -15,7 +15,7 @@ if(numberProduct){
                                 </div>`
 };
 
-/* ----- Affichage différent suivant que le panier est plein ou vide ----- */
+/*------------ Affichage différent suivant que le panier est plein ou vide -------------- */
 
 if (productInBasket === null || productInBasket == 0){
 
@@ -32,7 +32,8 @@ if (productInBasket === null || productInBasket == 0){
                                             choisir des nounours pour le remplir.
                                         </div>
                                     </div>
-                                </div> `
+                                </div> 
+                                `
 } else {
 
     // Première ligne du tableau à afficher si le panier comporte des produits 
@@ -54,7 +55,8 @@ if (productInBasket === null || productInBasket == 0){
                                     <div class="col-3">
                                         Supprimer
                                     </div>
-                                </div> `
+                                </div> 
+                                `
 
     // Affichage des produits contenus dans le panier                       
 
@@ -164,20 +166,20 @@ if (productInBasket === null || productInBasket == 0){
                                 </div>`
 }
 
-/* ----- Vérification des différents champs du formulaire de contact  ----- */
+/*--------- Vérification des différents champs du formulaire de contact  -------*/
 
     // Récupération du formulaire 
 
 let form = document.querySelector('#contactForm');
 
-    // -- Validation du nom --
+    //-- Validation du nom --
 
 form.lastName.addEventListener('change', function(){
     validLastName(this);
 });
 
 const validLastName = function(inputLastName) {
-    // Expression régulière pour vérifier que le nom ne comporte que des lettres (avec tiret, apostrophe ou espace)
+    // Expression régulière pour vérifier que le nom ne comporte que des lettres (avec tiret ou espace)
     let lastNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ-\' ]+$', 'g');
 
     // Récupération de la balise small située après l'input
@@ -199,14 +201,14 @@ const validLastName = function(inputLastName) {
     }
 };
 
-    // -- Validation du prénom --
+    //-- Validation du prénom --
 
 form.firstName.addEventListener('change', function(){
     validFirstName(this);
 });
 
 const validFirstName = function(inputFirstName) {
-    // Expression régulière pour vérifier que le prénom ne comporte que des lettres (avec tiret, apostrophe ou espace)
+    // Expression régulière pour vérifier que le prénom ne comporte que des lettres (avec tiret ou espace)
     let firstNameRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ-\' ]+$', 'g');
 
     // Récupération de la balise small située après l'input
@@ -235,7 +237,7 @@ form.address.addEventListener('change', function(){
 });
 
 const validAddress = function(inputAddress) {
-    // Expression régulière pour vérifier que l'adresse ne comporte que des lettres, des chiffres, tiret, espaces, apostrophe et virgule
+    // Expression régulière pour vérifier que l'adresse ne comporte que des lettres, des chiffres, tiret, espaces et virgule
     let addressRegex = new RegExp('^[A-Za-z0-9À-ÖØ-öø-ÿ- ,\']+$', 'g');
 
     // Récupération de la balise small située après l'input
@@ -250,21 +252,21 @@ const validAddress = function(inputAddress) {
         return true;
     } else {
         inputAddress.setAttribute('class', 'form-control border border-danger');
-        smallAddress.innerHTML = `<i class="fas fa-times"></i> L'adresse ne doit comporter que des lettres et des chiffres`;
+        smallAddress.innerHTML = `<i class="fas fa-times"></i> L'adresse ne doit comporter que des lettres et des chiffres'`;
         smallAddress.classList.remove('text-success');
         smallAddress.classList.add('text-danger');
         return false;
     }
 };
 
-    // -- Validation de la ville --
+    //-- Validation de la ville --
 
 form.city.addEventListener('change', function(){
     validCity(this);
 });
 
 const validCity = function(inputCity) {
-    // Expression régulière pour vérifier que la ville ne comporte que des lettres, tiret, espaces, apostrophe et virgule
+    // Expression régulière pour vérifier que la ville ne comporte que des lettres, tiret, espaces et virgule
     let cityRegex = new RegExp('^[A-Za-zÀ-ÖØ-öø-ÿ- \']+$', 'g');
 
     // Récupération de la balise small située après l'input
@@ -279,14 +281,14 @@ const validCity = function(inputCity) {
         return true;
     } else {
         inputCity.setAttribute('class', 'form-control border border-danger');
-        smallCity.innerHTML = `<i class="fas fa-times"></i> Le nom de la ville ne doit comporter que des lettres`;
+        smallCity.innerHTML = `<i class="fas fa-times"></i> Le nom de la ville ne doit comporter que des lettres'`;
         smallCity.classList.remove('text-success');
         smallCity.classList.add('text-danger');
         return false;
     }
 };
 
-    // -- Validation de l'adresse mail --
+    //-- Validation de l'adresse mail --
 
 form.email.addEventListener('change', function(){
     validEmail(this);
@@ -308,7 +310,7 @@ const validEmail = function(inputEmail) {
         return true;
     } else {
         inputEmail.setAttribute('class', 'form-control border border-danger');
-        smallEmail.innerHTML = `<i class="fas fa-times"></i> Veuillez entrer une adresse mail valide`;
+        smallEmail.innerHTML = `<i class="fas fa-times"></i> Veuillez entrer une adresse mail valide'`;
         smallEmail.classList.remove('text-success');
         smallEmail.classList.add('text-danger');
         return false;
@@ -316,7 +318,7 @@ const validEmail = function(inputEmail) {
 };
 
 
-/* ----- Envoi de la commande ----- */
+/*---------  Envoi de la commande ----------*/
 
 // Récupération de l'id des produits du panier
 
@@ -359,13 +361,5 @@ form.addEventListener('submit', function(event){
                 localStorage.setItem('orderId', dataOrder.orderId);
                 window.location.href = "confirmation.html"
             })
-            .catch(function(error) {
-                const err = document.getElementById('articles');
-        
-                err.innerHTML = `<div class="col-12 construction message">
-                                    Une erreur est survenue lors de l'envoi des données. <br>
-                                    Vérifier que le serveur est correctement lancé.
-                                </div>`
-            });
     };
 });

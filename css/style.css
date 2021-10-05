@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: rgba(228, 139, 7, 0.027);
+    background-color: #e68d0707;
     min-height: 100vh;
     display: flex;
     flex-direction:column;
@@ -13,8 +13,7 @@ body{
 main{
     flex:1;
 }
-
-/* ----- Header ----- */
+/* ------ Header --------*/
 
 header, footer{
     display: flex;
@@ -75,13 +74,13 @@ a:hover{
     color: initial;
 }
 
-/* ----- Main ----- */
+/*------- Main --------- */
 
 .container{
     text-align : center;
 }
 
-/* ----- Cards ----- */
+/* ------ Cards --------- */
 
 .card{
     height: auto;
@@ -108,7 +107,7 @@ a:hover{
     text-align: right;
 }
 
-/* ----- Footer ----- */
+/*------ Footer -------*/
 
 footer{
     padding-top: 1rem;
@@ -134,7 +133,7 @@ ul{
     color:#7031fa;
 }
 
-/* ----- Product ----- */
+/*-- Product --*/
 
 #product{
     display: flex;
@@ -156,7 +155,7 @@ ul{
     border : 1px solid #ecb7e1;
 }
 
-/* ----- Construction ----- */
+/*-- Construction --*/
 
 .construction{
     font-size: 2rem;
@@ -164,7 +163,7 @@ ul{
     text-shadow: 0.2rem 0.2rem 0.8rem #7131fa73;
 }
 
-/* ----- Panier ----- */
+/*-- Panier --*/
 
 .trash{
     height: 1.6rem;
@@ -206,7 +205,7 @@ ul{
     box-shadow: 0.2rem 0.2rem 0.8rem #ebbce165;
 }
 
-/* ----- Confirmation commande ----- */
+/*-- Confirmation commande --*/
 
 .command{
     background-color: #7131fa25;
@@ -232,7 +231,7 @@ ul{
 }
 
 
-/* ----- Nombre de produits dans le panier ----- */
+/*-- Nombre de produits dans le panier -- */
 
 .circleNumber{
     display: flex;
