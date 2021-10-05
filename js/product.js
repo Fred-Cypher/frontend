@@ -1,9 +1,9 @@
-/* --- Récupération de l'id contenu dans l'adresse URL  */
+/* ----- Récupération de l'id contenu dans l'adresse URL ----- */
 
 let params = new URL(document.location).searchParams;
 let idProduct = params.get('id');
 
-/* --------- Affichage du nombre de produits dans le panier -------  */
+/* ----- Affichage du nombre de produits dans le panier ----- */
 
 let numberProduct = JSON.parse(localStorage.getItem('quantityProducts'));
 
@@ -16,7 +16,7 @@ if(numberProduct){
                                 </div>`
 };
 
-/* ---- Affichage de la fiche produit ----- */
+/* ----- Affichage de la fiche produit ----- */
 
 fetch('http://localhost:3000/api/teddies?id=${idProduct}')
     .then(response => response.json())
@@ -67,7 +67,7 @@ fetch('http://localhost:3000/api/teddies?id=${idProduct}')
                 let options = product.colors;
 
                 options.forEach(function(element, key){
-                    choice[key] = new Option(element, element); // le deuxième "element" envoie la couleur dans la value du Select
+                    choice[key] = new Option(element, element); // le deuxième "element" envoie la couleur comme value 
                 });
 
 
