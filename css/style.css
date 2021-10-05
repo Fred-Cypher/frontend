@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: rgba(228, 139, 7, 0.027);
+    background-color: #e48b0707;
     min-height: 100vh;
     display: flex;
     flex-direction:column;
