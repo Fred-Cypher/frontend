@@ -1,4 +1,4 @@
-# frontend
+# Projet 5 du parcours d'OpenClassrooms - frontend
 
 Frontend du Projet 5 du parcours Développeur Web d'OpenCLassRooms : Construisez un site e-commerce
 
