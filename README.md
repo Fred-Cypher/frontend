@@ -5,7 +5,7 @@ Frontend du Projet 5 du parcours Développeur Web d'OpenCLassRooms : Construisez
 
 Le but du projet est de créer un MVP pour démontrer le fonctionnement aux investisseurs. 
 
-La partie backend est fournie, le projet consiste à créer la partie frontend. L'API est ici hébergée dans le localhost, une version du projet avec l'API hébergée sur Heroku est disponible dans un autre repository (https://github.com/Fred-Cypher/orinoco.git).
+La partie backend est fournie, le projet consiste à créer la partie frontend. L'API est ici hébergée dans le localhost.
 
 
 Fonctionnalités à mettre en place et contraintes techniques :
